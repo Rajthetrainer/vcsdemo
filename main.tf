@@ -20,7 +20,7 @@ terraform {
 provider "local" {}
 
 resource "local_file" "demo_file" {
-  filename = "output.txt"
+  filename = "output1.txt"
   content  = "This file was created by Terraform Cloud via VCS mode!"
 }
 
