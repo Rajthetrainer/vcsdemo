@@ -8,22 +8,19 @@ terraform {
   }
 
   required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.0"
     }
   }
+
+  required_version = ">= 1.5.0"
 }
 
-provider "aws" {
-  region = "us-east-1"
-}
+provider "local" {}
 
-resource "random_id" "suffix" {
-  byte_length = 4
-}
-
-resource "aws_s3_bucket" "demo" {
-  bucket = "raj-demo-bucket-${random_id.suffix.hex}"
+resource "local_file" "demo_file" {
+  filename = "output.txt"
+  content  = "This file was created by Terraform Cloud via VCS mode!"
 }
 
